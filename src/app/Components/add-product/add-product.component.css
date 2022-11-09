@@ -1,0 +1,25 @@
+.form-group.row>label{
+    text-align: left;
+    background-color: rgba(57, 101, 224, 0.273);
+    
+}
+
+.form-group.row{
+   justify-content: space-between;
+    padding: 5px;
+}
+
+.form-input>input{
+    background-color:  rgba(57, 101, 224, 0.273);
+}
+
+.container-fluid{
+    width:80%;
+    margin: auto;
+}
+.submit-button{
+    position: relative;
+    float: right;
+    margin-right: 5px;
+}
+

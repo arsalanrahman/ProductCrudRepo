@@ -1,0 +1,24 @@
+.header{
+    text-align: center;
+}
+
+.router-links>a{
+   text-align: center;
+   padding: 16px;
+
+}
+.router-links{
+    margin: auto;
+    width: 60%;
+    font-weight: bold;
+    color: rgb(71, 50, 208);
+
+}
+
+.component-header{
+    font-weight: bold;
+    background-color: rgba(134, 123, 123, 0.558);
+    width: 80%;
+    margin: auto;
+    
+}
