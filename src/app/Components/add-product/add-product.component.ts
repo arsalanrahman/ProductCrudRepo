@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  formData: FormData | undefined
+  formDataReq: FormData
 
   productForm: FormGroup;
 
@@ -31,11 +31,15 @@ export class AddProductComponent implements OnInit {
 
 
   onSubmit(formData: FormGroup) {
-   
-console.log(formData.value);
+    this.formDataReq = new FormData();
+    this.formDataReq.append("productName", formData.value.productName)
+    this.formDataReq.append("shortDescription", formData.value.shortDescription)
+    this.formDataReq.append("detailedDescription", formData.value.detailedDescription)
+    this.formDataReq.append("category", formData.value.category)
+    this.formDataReq.append("price", formData.value.price)
     
 
-    this.productService.addProductRequest(formData.value).subscribe({
+    this.productService.addProductRequest(this.formDataReq).subscribe({
       next(value) {
           console.log(value);
 

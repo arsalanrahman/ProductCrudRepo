@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  addProductRequest(formData: FormGroup) {
-    return this.http.post(`http:localhost:8080/p-addition`, formData)
+  addProductRequest(formData: FormData) {
+    return this.http.post("http://localhost:8080/p-addition", formData)
   }
 }
