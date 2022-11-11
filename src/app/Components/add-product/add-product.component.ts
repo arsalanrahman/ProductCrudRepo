@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { ProductService } from 'src/app/Services/product.service';
 
@@ -10,31 +11,40 @@ import { ProductService } from 'src/app/Services/product.service';
 export class AddProductComponent implements OnInit {
   formData: FormData | undefined
 
-  formInputData = {
-    productName: "",
-    productShortDescription: "",
-    productDetailedDescription: "",
-    productCategory: "",
-    productPrice: ""
-  }
-  constructor(private productService: ProductService) { }
+  productForm: FormGroup;
+
+  
+  constructor(private formBuilder: FormBuilder, private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.productForm = new FormGroup({
+      productName: new FormControl(''),
+      shortDescription: new FormControl(''),
+      detailedDescription: new FormControl(''),
+      category: new FormControl(''),
+      price: new FormControl('')
+    })
+
   }
 
-  onSubmit() {
-    this.formData = new FormData();
-    this.formData.append("productName", this.formInputData.productName);
-    this.formData.append("shortDescription", this.formInputData.productShortDescription);
-    this.formData.append("detailedDescription", this.formInputData.productDetailedDescription);
-    this.formData.append("category", this.formInputData.productCategory);
-    this.formData.append("price", this.formInputData.productPrice);
-    this.productService.addProductRequest(this.formData).subscribe(
-      (response) => {
-        console.log(response);
+  
 
-      }
-    );
+
+  onSubmit(formData: FormGroup) {
+   
+console.log(formData.value);
+    
+
+    this.productService.addProductRequest(formData.value).subscribe({
+      next(value) {
+          console.log(value);
+
+      },
+      error(err) {
+          console.log(err);
+
+      },
+    })
 
 
   }
