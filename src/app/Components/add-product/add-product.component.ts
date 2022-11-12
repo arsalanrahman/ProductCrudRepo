@@ -13,7 +13,7 @@ export class AddProductComponent implements OnInit {
 
   productForm: FormGroup;
 
-  
+
   constructor(private formBuilder: FormBuilder, private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class AddProductComponent implements OnInit {
 
   }
 
-  
+
 
 
   onSubmit(formData: FormGroup) {
@@ -37,14 +37,14 @@ export class AddProductComponent implements OnInit {
     this.formDataReq.append("detailedDescription", formData.value.detailedDescription)
     this.formDataReq.append("category", formData.value.category)
     this.formDataReq.append("price", formData.value.price)
-    
+
 
     this.productService.addProductRequest(this.formDataReq).subscribe({
       next(value) {
-          console.log(value);
+        console.log(value);
       },
       error(err) {
-          console.log(err);
+        console.log(err);
       },
     })
   }
