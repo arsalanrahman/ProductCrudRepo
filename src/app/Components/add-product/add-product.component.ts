@@ -42,15 +42,11 @@ export class AddProductComponent implements OnInit {
     this.productService.addProductRequest(this.formDataReq).subscribe({
       next(value) {
           console.log(value);
-
       },
       error(err) {
           console.log(err);
-
       },
     })
-
-
   }
 
 
