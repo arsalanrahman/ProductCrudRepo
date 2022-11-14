@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observer } from 'rxjs';
+import { ErrorResponse } from 'src/app/Model/error';
+import { Product } from 'src/app/Model/product';
 
 import { ProductService } from 'src/app/Services/product.service';
 
@@ -9,9 +12,14 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  formDataReq: FormData
-
+  formDataReq: FormData;
+  publicsuccessRes: Product
   productForm: FormGroup;
+  successRes: Product;
+  errorRes: ErrorResponse;
+
+  isResponseReceived : boolean = false
+  isErrorResponseReceived : boolean = false
 
 
   constructor(private formBuilder: FormBuilder, private productService: ProductService) { }
@@ -27,6 +35,10 @@ export class AddProductComponent implements OnInit {
 
   }
 
+  ngDoCheck(){
+    
+  }
+
 
 
 
@@ -40,14 +52,18 @@ export class AddProductComponent implements OnInit {
 
 
     this.productService.addProductRequest(this.formDataReq).subscribe({
-      next(value) {
-        console.log(value);
+      next: res => { 
+        this.isResponseReceived = true
+        this.successRes = <Product>res
+        console.log(this.successRes);
       },
-      error(err) {
-        console.log(err);
-      },
+      error: err =>{
+        console.log(err)
+        this.isErrorResponseReceived = true
+        this.errorRes = <ErrorResponse>err.error;
+
+      }
     })
+
   }
-
-
 }
