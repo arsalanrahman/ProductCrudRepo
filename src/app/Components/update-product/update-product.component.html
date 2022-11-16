@@ -1,1 +1,64 @@
-<p>update-product works!</p>
+<div class="container-fluid">
+    <div class="row component-header">
+        <div class="col-10">
+            Product Update
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)" [autocomplete]="true">
+
+                <div class="form-group row">
+                    <label for="productName" class="col-sm-5 col-form-label">Product Name</label>
+                    <div class="col-sm-5 form-input">
+                        <input formControlName="productName" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="productName" class="col-sm-5 col-form-label">Product Short Description</label>
+                    <div class="col-sm-5 form-input">
+                        <input formControlName="shortDescription" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="productName" class="col-sm-5 col-form-label">Product Detailed Description</label>
+                    <div class="col-sm-5 form-input">
+                        <input formControlName="detailedDescription" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="productName" class="col-sm-5 col-form-label">Product Price</label>
+                    <div class="col-sm-5 form-input">
+                        <input formControlName="price" type="number" class="form-control">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary submit-button">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div *ngIf="this.isResponseReceived" class="alert alert-success alert-dismissible fade show">
+                <strong>{{this.successRes.message}}</strong>
+                <p>Product ID : {{this.successRes.prodEntity.productId}}</p>
+                <p>Product Name: {{this.successRes.prodEntity.productName}}</p>
+                <p>Product Short Description : {{this.successRes.prodEntity.shortDescription}}</p>
+                <p>Product Detailed Description : {{this.successRes.prodEntity.detailedDescription}}</p>
+                <p>Product Category : {{this.successRes.prodEntity.category}}</p>
+                <p>Product Price : {{this.successRes.prodEntity.price}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            <div *ngIf="this.isErrorResponseReceived" class="alert alert-danger
+            00 alert-dismissible fade show">
+                <strong>Error occurred</strong>
+                <p>{{this.errorRes.message}}</p>
+                <p>{{this.errorRes.timestamp}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

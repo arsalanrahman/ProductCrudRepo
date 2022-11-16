@@ -1,1 +1,46 @@
-<p>search-product works!</p>
+<div class="container-fluid">
+    <div class="row component-header">
+        <div class="col-10">
+            Product Search
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)" [autocomplete]="true">
+
+                <div class="form-group row">
+                    <label for="productName" class="col-sm-5 col-form-label">Product Name</label>
+                    <div class="col-sm-5 form-input">
+                        <input formControlName="productName" type="text" class="form-control">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary submit-button">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div *ngIf="this.isResponseReceived" class="alert alert-success alert-dismissible fade show">
+                <strong>Product Found!!</strong>
+                <p>Product ID : {{this.successRes.productId}}</p>
+                <p>Product Name: {{this.successRes.productName}}</p>
+                <p>Product Short Description : {{this.successRes.shortDescription}}</p>
+                <p>Product Detailed Description : {{this.successRes.detailedDescription}}</p>
+                <p>Product Category : {{this.successRes.category}}</p>
+                <p>Product Price : {{this.successRes.price}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeAlert()"></button>
+            </div>
+            <div *ngIf="this.isErrorResponseReceived" class="alert alert-danger
+            00 alert-dismissible fade show">
+                <strong>Error occurred</strong>
+                <p>{{this.errorRes.message}}</p>
+                <p>{{this.errorRes.timestamp}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeAlert()"></button>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

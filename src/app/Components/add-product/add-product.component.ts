@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observer } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorResponse } from 'src/app/Model/error';
 import { Product } from 'src/app/Model/product';
 
@@ -22,7 +21,7 @@ export class AddProductComponent implements OnInit {
   isErrorResponseReceived : boolean = false
 
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productForm = new FormGroup({
