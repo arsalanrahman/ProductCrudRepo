@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CreateRequest } from 'src/app/Model/create-request';
 import { ErrorResponse } from 'src/app/Model/error';
 import { Product } from 'src/app/Model/product';
 
@@ -11,7 +12,7 @@ import { ProductService } from 'src/app/Services/product.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  formDataReq: FormData;
+  formDataReq: CreateRequest;
   publicsuccessRes: Product
   productForm: FormGroup;
   successRes: Product;
@@ -42,12 +43,15 @@ export class AddProductComponent implements OnInit {
 
 
   onSubmit(formData: FormGroup) {
-    this.formDataReq = new FormData();
-    this.formDataReq.append("productName", formData.value.productName)
-    this.formDataReq.append("shortDescription", formData.value.shortDescription)
-    this.formDataReq.append("detailedDescription", formData.value.detailedDescription)
-    this.formDataReq.append("category", formData.value.category)
-    this.formDataReq.append("price", formData.value.price)
+    this.formDataReq = {
+    productName: formData.value.productName,
+    shortDescription: formData.value.shortDescription,
+    detailedDescription: formData.value.detailedDescription,
+    category: formData.value.category,
+    price: formData.value.price
+    }
+    console.log(this.formDataReq);
+    
 
 
     this.productService.addProductRequest(this.formDataReq).subscribe({

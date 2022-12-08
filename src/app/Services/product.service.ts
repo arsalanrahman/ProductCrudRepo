@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CreateRequest } from '../Model/create-request';
 import { UpdateRequest } from '../Model/update-request';
 
 @Injectable({
@@ -10,8 +11,15 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  addProductRequest(formData: FormData) {
-    return this.http.post(`http://localhost:8080/p-addition`, formData)
+
+  headers = new HttpHeaders();
+  
+        
+
+  addProductRequest(createRequest: CreateRequest) {
+    this.headers.append('Content-Type', 'application/json');
+    this.headers.append('Accept', 'application/json');
+    return this.http.post(`http://localhost:8080/p-addition`, createRequest, {headers: this.headers})
   }
   updateProductRequest(updateRequest: UpdateRequest) {
     return this.http.put(`http://localhost:8080/p-update`, updateRequest)
